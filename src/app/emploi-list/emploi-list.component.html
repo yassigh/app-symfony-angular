@@ -1,0 +1,71 @@
+<app-navbar></app-navbar>
+
+<h1>Liste des Emplois du Temps 2024/2025</h1>
+<a [routerLink]="['/emploi-new']" class="btn btn-danger float-right">Créer un Nouvel Emploi</a>
+
+<hr>
+<br><br>
+
+
+<form (ngSubmit)="applyFilters()" class="filter-form">
+  <div class="d-flex justify-content-between">
+    <div class="flex-fill">
+      <label for="titre">Titre:</label>
+      <input type="text" [(ngModel)]="filters.titre" name="titre" id="titre" class="form-control">
+    </div>
+
+    <div class="flex-fill">
+      <label for="enseignant">Nom de l'enseignant:</label>
+      <input type="text" [(ngModel)]="filters.nomEnseignant" name="nomEnseignant" id="enseignant" class="form-control">
+    </div>
+   
+    <div class="flex-fill">
+      <label for="salle">Salle:</label>
+      <input type="text" [(ngModel)]="filters.salle" name="salle" id="salle" class="form-control">
+    </div>
+  </div>
+  
+  <button type="submit" class="btn btn-primary mt-2">Appliquer les filtres</button>
+</form>
+<br><br>
+
+
+
+
+ <div *ngFor="let classe of classes" > <h2>{{ classe.nom }}</h2>
+
+
+<div *ngFor="let emploiGroup of emploisGroupedByJour">
+  <h2>{{ emploiGroup.jour }}</h2> 
+  <table class="table">
+    <thead>
+      <tr>
+        <th>classe</th>
+        <th>Titre</th>
+        <th>Nom de l'enseignant</th>
+        <th>Début</th>
+        <th>Fin</th>
+        <th>Salle</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let emploi of emploiGroup.emplois">
+<!-- Vérifier si emploi.classe est un objet de type Classe -->
+<td>{{ emploi.classe || 'Non spécifié' }}</td>
+
+        <td>{{ emploi.titre || 'Non spécifié' }}</td>
+        <td>{{ emploi.nomEnseignant || 'Non spécifié' }}</td>
+        <td>{{ emploi.startTime | date: 'shortTime' }}</td>
+        <td>{{ emploi.endTime | date: 'shortTime' }}</td>
+        <td>{{ emploi.salle || 'Non spécifiée' }}</td>
+        <td>
+          <a [routerLink]="['/emploi-edit', emploi.id]" class="btn btn-primary">Modifier</a>
+          <button class="btn btn-danger" (click)="deleteEmploi(emploi.id)">Supprimer</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div></div>
+
+

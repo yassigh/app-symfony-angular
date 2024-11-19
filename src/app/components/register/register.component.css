@@ -1,0 +1,87 @@
+/* Centre le formulaire sur la page */
+form {
+    max-width: 400px;
+    margin: 50px auto;
+    padding: 30px;
+    background-color: #2c2c54; /* Violet foncé */
+    border-radius: 10px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    color: #fff;
+    text-align: left;
+  }
+  
+  /* Styles pour les étiquettes */
+  form label {
+    font-size: 0.9em;
+    margin-bottom: 5px;
+    color: #b8b8ff;
+    font-weight: 600;
+  }
+  
+  /* Styles pour les champs de saisie */
+  form .form-control {
+    padding: 10px;
+    font-size: 1em;
+    border: 1px solid #6c5ce7;
+    border-radius: 5px;
+    margin-bottom: 15px;
+    background-color: #3c3c74;
+    color: #fff;
+    transition: border-color 0.3s;
+  }
+  
+  /* Effet de focus pour les champs de saisie */
+  form .form-control:focus {
+    border-color: #8e7cc3;
+    outline: none;
+    box-shadow: 0 0 5px rgba(142, 124, 195, 0.5);
+  }
+  
+  /* Styles pour le bouton de soumission */
+  form button {
+    width: 100%;
+    padding: 12px;
+    font-size: 1em;
+    background-color: #6c5ce7;
+    border: none;
+    color: #fff;
+    font-weight: bold;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+  }
+  
+  form button:hover {
+    background-color: #5a47c3;
+    transform: translateY(-2px);
+  }
+  
+  form button:disabled {
+    background-color: #7a73a9;
+    cursor: not-allowed;
+  }
+  
+  /* Texte d'erreur */
+  .text-danger {
+    font-size: 0.8em;
+    color: #ff6b6b;
+  }
+  
+  /* Icônes pour les champs de saisie */
+  .form-group {
+    position: relative;
+  }
+  
+  .form-group i {
+    position: absolute;
+    top: 50%;
+    left: 10px;
+    transform: translateY(-50%);
+    color: #b8b8ff;
+  }
+  
+  /* Ajustement pour les champs de saisie avec icônes */
+  .form-control {
+    padding-left: 35px;
+  }
+  

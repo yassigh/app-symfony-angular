@@ -1,0 +1,44 @@
+
+<h1>Inscription</h1>
+
+<form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+  <div class="form-group">
+    <label for="email">Email</label>
+    <i class="fas fa-envelope"></i> <!-- Icône d'enveloppe -->
+    <input type="email" id="email" formControlName="email" class="form-control" />
+    <div *ngIf="registerForm.get('email')?.invalid && registerForm.get('email')?.touched">
+      <small class="text-danger">Un email valide est requis.</small>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="nom">Nom</label>
+    <i class="fas fa-user"></i> <!-- Icône d'utilisateur -->
+    <input type="text" id="nom" formControlName="nom" class="form-control" />
+    <div *ngIf="registerForm.get('nom')?.invalid && registerForm.get('nom')?.touched">
+      <small class="text-danger">Le nom est requis.</small>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="prenom">Prénom</label>
+    <i class="fas fa-user"></i> <!-- Icône d'utilisateur -->
+    <input type="text" id="prenom" formControlName="prenom" class="form-control" />
+    <div *ngIf="registerForm.get('prenom')?.invalid && registerForm.get('prenom')?.touched">
+      <small class="text-danger">Le prénom est requis.</small>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="plainPassword">Mot de passe</label>
+    <i class="fas fa-lock"></i> <!-- Icône de cadenas -->
+    <input type="password" id="plainPassword" formControlName="plainPassword" class="form-control" />
+    <div *ngIf="registerForm.get('plainPassword')?.invalid && registerForm.get('plainPassword')?.touched">
+      <small class="text-danger">Le mot de passe doit contenir au moins 6 caractères.</small>
+    </div>
+  </div>
+
+  <div *ngIf="errorMessage" class="alert alert-danger">{{ errorMessage }}</div>
+
+  <button type="submit" class="btn btn-primary" [disabled]="registerForm.invalid">S'inscrire</button>
+</form>

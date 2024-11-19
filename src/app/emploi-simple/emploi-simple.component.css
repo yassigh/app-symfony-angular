@@ -1,0 +1,134 @@
+/* Styles de base pour la table */
+.table {
+    width: 100%;
+    margin: 20px 0;
+    border-collapse: collapse;
+    background-color: #fff;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  }
+  
+  .table th, .table td {
+    padding: 15px;
+    text-align: left;
+    border-bottom: 1px solid #eee;
+  }
+  
+  .table th {
+    background-color: #6c5ce7; /* Violet moderne */
+    color: #fff;
+    font-weight: 600;
+    text-transform: uppercase;
+  }
+  
+  .table tr:hover {
+    background-color: #f9f9f9;
+    cursor: pointer;
+  }
+  
+  /* Styles pour les boutons */
+  .btn {
+    text-decoration: none;
+    border-radius: 5px;
+    padding: 8px 15px;
+    font-size: 0.9em;
+    font-weight: 600;
+    transition: background-color 0.3s, transform 0.2s;
+  }
+  
+  .btn-danger {
+    background-color: #e74c3c; /* Rouge moderne */
+    color: #fff;
+    border: none;
+  }
+  
+  .btn-danger:hover {
+    background-color: #c0392b;
+    transform: translateY(-2px);
+  }
+  
+  .btn-primary {
+    background-color: #6c5ce7; /* Violet moderne */
+    color: #fff;
+    border: none;
+  }
+  
+  .btn-primary:hover {
+    background-color: #5a47c3;
+    transform: translateY(-2px);
+  }
+  
+  .btn:focus {
+    outline: none;
+    box-shadow: 0 0 5px rgba(108, 92, 231, 0.4);
+  }
+  
+  /* Styles pour le formulaire de filtrage */
+  .filter-form {
+    background-color: #f2f4f8;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .filter-form label {
+    font-size: 0.9em;
+    font-weight: 600;
+    color: #333;
+  }
+  
+  .filter-form .form-control {
+    padding: 10px;
+    font-size: 0.9em;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    transition: border-color 0.3s;
+  }
+  
+  .filter-form .form-control:focus {
+    border-color: #6c5ce7;
+    box-shadow: 0 0 5px rgba(108, 92, 231, 0.4);
+    outline: none;
+  }
+  
+  .d-flex {
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+  }
+  
+  .flex-fill {
+    flex: 1;
+    min-width: 250px;
+  }
+  
+  /* Styles pour les titres */
+  h1 {
+    font-size: 1.8em;
+    color: #2d3436; /* Gris moderne */
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  /* Styles pour l'élément <hr> */
+  hr {
+    border: 0;
+    height: 1px;
+    background: #eee;
+    margin: 20px 0;
+  }
+  
+  /* Styles pour l'élément <a> de création d'emploi */
+  a.btn-danger.float-right {
+    margin-bottom: 20px;
+    background-color: #ff4757; /* Rouge vif */
+    border-radius: 30px;
+    padding: 10px 20px;
+    font-size: 0.9em;
+  }
+  
+  a.btn-danger.float-right:hover {
+    background-color: #e84118;
+  }
+  

@@ -1,0 +1,82 @@
+/* Styles de base pour le formulaire */
+form {
+  max-width: 600px;
+  margin: 50px auto;
+  padding: 30px;
+  background-color: #2e275c; /* Fond violet foncé */
+  border-radius: 10px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+  color: #fff;
+}
+
+/* Style des étiquettes */
+form label {
+  font-size: 0.9em;
+  font-weight: 600;
+  color: #d1c4ff; /* Violet clair */
+  margin-bottom: 5px;
+}
+
+/* Style des champs de saisie */
+.form-control {
+  padding: 10px;
+  font-size: 1em;
+  border: 1px solid #8e44ad; /* Bordure violet moyen */
+  border-radius: 5px;
+  background-color: #3f3a78; /* Fond violet foncé */
+  color: #fff;
+  transition: border-color 0.3s;
+  margin-bottom: 15px;
+}
+
+/* Effet de focus pour les champs de saisie */
+.form-control:focus {
+  border-color: #a29bfe; /* Violet pastel */
+  outline: none;
+  box-shadow: 0 0 5px rgba(162, 155, 254, 0.5);
+}
+
+/* Style pour les boutons */
+button {
+  padding: 10px 20px;
+  font-size: 1em;
+  font-weight: bold;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.2s;
+}
+
+/* Bouton principal */
+.btn-primary {
+  background-color: #6c5ce7; /* Violet primaire */
+  border: none;
+  color: #fff;
+}
+
+.btn-primary:hover {
+  background-color: #5a47c3; /* Violet plus foncé */
+  transform: translateY(-2px);
+}
+
+/* Bouton secondaire */
+.btn-secondary {
+  background-color: #9b59b6; /* Violet pastel */
+  border: none;
+  color: #fff;
+}
+
+.btn-secondary:hover {
+  background-color: #8e44ad; /* Violet foncé */
+  transform: translateY(-2px);
+}
+
+/* Texte d'erreur */
+.text-danger {
+  font-size: 0.8em;
+  color: #ff6b6b; /* Rouge clair pour les erreurs */
+}
+
+/* Centrage des éléments de formulaire */
+.form-group {
+  margin-bottom: 20px;
+}

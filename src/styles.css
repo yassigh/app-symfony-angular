@@ -1,1 +1,10 @@
 /* You can add global styles to this file, and also import other style files */
+::ng-deep .toast-success {
+    background-color: #28a745;   }
+  
+  ::ng-deep .toast-error {
+    background-color: #dc3545;   }
+  
+  ::ng-deep .toast-info {
+    background-color: #17a2b8;   }
+  
