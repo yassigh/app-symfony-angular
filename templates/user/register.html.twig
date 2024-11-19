@@ -1,0 +1,16 @@
+
+{% extends 'base.html.twig' %}
+
+{% block title %}Connexion{% endblock %}
+
+{% block body %}
+    <h1>registre</h1>
+    {{ form_start(form) }}
+    {{ form_row(form.email) }}
+    {{ form_row(form.nom) }} 
+     {{ form_row(form.prenom) }} {# Assurez-vous que ce champ est inclus #}
+    {{ form_row(form.plainPassword) }}
+    <button type="submit">S'inscrire</button>
+{{ form_end(form) }}
+ 
+{% endblock %}

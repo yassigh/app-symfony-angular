@@ -1,0 +1,24 @@
+{# templates/home.html.twig #}
+{% extends 'base.html.twig' %}
+
+{% block title %}Bienvenue{% endblock %}
+
+{% block body %}
+    <h1>Bienvenue sur Mon Application</h1>
+    <p>Ceci est un exemple de page d'accueil.</p>
+
+    <div class="row">
+        <div class="col-md-4">
+            <h2>À propos de nous</h2>
+            <p>Nous offrons une gestion complète des emplois du temps.</p>
+        </div>
+        <div class="col-md-4">
+            <h2>Fonctionnalités</h2>
+            <p>Découvrez nos fonctionnalités : authentification, gestion des horaires, intégration avec Google Calendar, etc.</p>
+        </div>
+        <div class="col-md-4">
+            <h2>Contact</h2>
+            <p>Pour toute question, veuillez nous contacter à l'adresse suivante.</p>
+        </div>
+    </div>
+{% endblock %}

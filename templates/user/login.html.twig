@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Connexion{% endblock %}
+
+{% block body %}
+    <h1>Connexion</h1>
+    {{ form_start(form) }}
+    {{ form_row(form.email) }}  {# Assurez-vous que le formulaire a un champ pour l'email #}
+    {{ form_row(form.plainPassword) }} 
+
+    <button class="btn">
+  
+        <a href="{{ path('emp') }}">connecter</a>
+</button>
+    {{ form_end(form) }}
+
+
+
+ 
+{% endblock %}

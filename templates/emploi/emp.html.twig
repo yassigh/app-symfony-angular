@@ -1,0 +1,98 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Emplois{% endblock %}
+
+{% block stylesheets %}
+    <style>
+        .table {
+            width: 100%;
+            margin: 20px 0;
+            border-collapse: collapse;
+        }
+        .table th, .table td {
+            padding: 12px;
+            border: 1px solid #ddd;
+            text-align: left;
+        }
+        .table th {
+            background-color: #f2f2f2;
+        }
+        .btn-danger {
+            background-color: #dc3545;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            cursor: pointer;
+        }
+        .btn-primary {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            cursor: pointer;
+        }
+        .btn {
+            text-decoration: none;
+            border-radius: 4px;
+            margin-right: 5px;
+        }
+    </style>
+{% endblock %}
+
+{% block body %}
+ <h1>Liste des Emplois du Temps</h1>
+    <hr> 
+    <!-- Formulaire de filtrage -->
+<form method="get" action="{{ path('emploi_index') }}" class="filter-form">
+    <label for="titre">Titre:</label>
+    <input type="text" name="titre" id="titre" value="{{ selectedTitre }}">
+
+    <button type="submit" class="btn btn-primary">Filtrer</button>
+
+     <label for="enseignant">Nom de l'enseignant:</label>
+    <input type="text" name="enseignant" id="enseignant" value="{{ selectedEnseignant }}">
+    <button type="submit" class="btn btn-primary">Filtrer</button>
+
+     <label for="salle">Salle:</label>
+        <input type="text" name="salle" id="salle" value="{{ selectedSalle }}"> <!-- Champ pour le filtre de salle -->
+
+        <button type="submit" class="btn btn-primary">Filtrer</button>
+</form>
+    {% for classeNom, emplois in groupedEmplois %}
+      <h2>Classe : {{ classeNom }}</h2> 
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Jour</th>
+                    <th>Titre</th>
+                    <th>Nom de l'enseignant</th>
+                    <th>Début</th>
+                    <th>Fin</th>
+                    <th>Salle</th>
+                   
+                </tr>
+            </thead>
+            <tbody>
+            {% for emploi in emplois %}
+                <tr>
+                    <td>{{ emploi.jour }}</td>
+                    <td>{{ emploi.titre }}</td>
+                    <td>{{ emploi.nomEnseignant }}</td>
+                    <td>{{ emploi.startTime|date('H:i') }}</td>
+                    <td>{{ emploi.endTime|date('H:i') }}</td>
+                    <td>{{ emploi.salle }}</td>
+                    
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+ {% endfor %}
+
+  
+{% endblock %}
+
+ 
+
+     
+
+
