@@ -1,7 +1,6 @@
 <?php
 
 namespace App\Controller;
-
 use App\Entity\User;
 use App\Form\UserLoginType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -25,23 +24,20 @@ class UserController extends AbstractController
     ): JsonResponse {
         $data = json_decode($request->getContent(), true);
         
-        // Validation des donnee (ajoutez des validations supplementaires si necessaire)
         if (!isset($data['email'], $data['prenom'], $data['nom'], $data['plainPassword'])) {
             return new JsonResponse(['error' => 'Missing fields.'], JsonResponse::HTTP_BAD_REQUEST);
         }
-
-        // Creation de l'utilisateur
         $user = new User();
         $user->setEmail($data['email']);
         $user->setNom($data['nom']);
         $user->setPrenom($data['prenom']);
         $user->setRoles(['ROLE_USER']); 
 
-        // Hachage du mot de passe
+   
         $hashedPassword = $passwordHasher->hashPassword($user, $data['plainPassword']);
         $user->setPassword($hashedPassword);
 
-        // Enregistrement dans la base de donnees
+      
         $entityManager->persist($user);
         $entityManager->flush();
 
@@ -53,8 +49,6 @@ class UserController extends AbstractController
     {
         $error = $authenticationUtils->getLastAuthenticationError();
          $lastUsername = $authenticationUtils->getLastUsername();
-
-        // Create a response object for JSON
         $response = [
             'lastUsername' => $lastUsername,
             'error' => $error ? $error->getMessage() : null,
@@ -64,4 +58,50 @@ class UserController extends AbstractController
     }
    
 
+
+
+    
+    #[Route('/api/google-login', name: 'api_google_login', methods: ['POST'])]
+    public function googleLogin(Request $request, EntityManagerInterface $entityManager): JsonResponse
+    {
+        $data = json_decode($request->getContent(), true);
+    
+        if (!isset($data['idToken'])) {
+            return new JsonResponse(['error' => 'Missing idToken.'], JsonResponse::HTTP_BAD_REQUEST);
+        }
+    
+        // Remplacez par votre logique pour valider l'idToken avec l'API Google
+        $client = new \Google_Client(['client_id' => '409367083188-dp5dm2r4onghld6tfi2m6sgd9cbctgio.apps.googleusercontent.com']);
+        $payload = $client->verifyIdToken($data['idToken']);
+        if (!$payload) {
+            return new JsonResponse(['error' => 'Invalid idToken.'], JsonResponse::HTTP_UNAUTHORIZED);
+        }
+    
+        $email = $payload['email'];
+        $nom = $payload['family_name'] ?? '';
+        $prenom = $payload['given_name'] ?? '';
+    
+        // Vérifiez si l'utilisateur existe déjà dans la base de données
+        $user = $entityManager->getRepository(User::class)->findOneBy(['email' => $email]);
+        if (!$user) {
+            // Si l'utilisateur n'existe pas, créez un nouvel utilisateur
+            $user = new User();
+            $user->setEmail($email);
+            $user->setNom($nom);
+            $user->setPrenom($prenom);
+            $user->setRoles(['ROLE_USER']);
+            // Vous pouvez générer un mot de passe aléatoire ou laisser le champ vide
+            $user->setPassword('');
+    
+            $entityManager->persist($user);
+            $entityManager->flush();
+        }
+    
+        // Retournez une réponse JSON avec le rôle de l'utilisateur
+        return new JsonResponse([
+            'message' => 'Google login successful',
+            'role' => $user->getRoles()[0],
+        ], JsonResponse::HTTP_OK);
+    }
+    
 }
