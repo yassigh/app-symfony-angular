@@ -40,7 +40,7 @@
   <table class="table">
     <thead>
       <tr>
-        <th>classe</th>
+        <!-- <th>classe</th> -->
         <th>Titre</th>
         <th>Nom de l'enseignant</th>
         <th>Début</th>
@@ -52,7 +52,7 @@
     <tbody>
       <tr *ngFor="let emploi of emploiGroup.emplois">
 <!-- Vérifier si emploi.classe est un objet de type Classe -->
-<td>{{ emploi.classe || 'Non spécifié' }}</td>
+<!-- <td>{{ emploi.nomClasse || 'Non spécifié' }}</td> -->
 
         <td>{{ emploi.titre || 'Non spécifié' }}</td>
         <td>{{ emploi.nomEnseignant || 'Non spécifié' }}</td>

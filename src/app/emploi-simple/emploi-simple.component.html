@@ -1,4 +1,26 @@
-<app-navbar></app-navbar>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="#">
+      <img src="assets/logo.png" alt="Logo" style="height: 70px;">
+    </a>
+<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+</button>
+<div class="collapse navbar-collapse" id="navbarNav">
+    <ul class="navbar-nav">
+        <li class="nav-item nav-item-bg">
+            <a class="nav-link" [routerLink]="['/']">
+                <i class="fas fa-home"></i> Accueil
+            </a>
+        </li>
+      
+        <li class="nav-item nav-item-bg">
+            <a class="nav-link" [routerLink]="['/emplois']">
+                <i class="fas fa-list"></i> Liste des Emplois
+            </a>
+        </li>
+    </ul>
+</div>
+</nav>
 
 <h1>Liste des Emplois du Temps 2024/2025</h1>
 <a [routerLink]="['/emploi-new']" class="btn btn-danger float-right">Créer un Nouvel Emploi</a>
@@ -28,19 +50,17 @@
   <button type="submit" class="btn btn-primary mt-2">Appliquer les filtres</button>
 </form>
 <br><br>
-<label for="classe">Classe:</label>
 
-<select [(ngModel)]="filters.classe" name="classe" id="classe" class="form-control">
 
-  <option *ngFor="let classe of classes" [value]="classe.id">{{ classe.nom }}</option>
-</select>
+<div *ngFor="let classe of classes" > <h2>{{ classe.nom }}</h2>
+
 
 <div *ngFor="let emploiGroup of emploisGroupedByJour">
   <h2>{{ emploiGroup.jour }}</h2> 
   <table class="table">
     <thead>
       <tr>
-        <th>classe</th>
+        
         <th>Titre</th>
         <th>Nom de l'enseignant</th>
         <th>Début</th>
@@ -52,7 +72,7 @@
     <tbody>
       <tr *ngFor="let emploi of emploiGroup.emplois">
 <!-- Vérifier si emploi.classe est un objet de type Classe -->
-<td *ngIf="isClasse(emploi)">{{ emploi.classe || 'Non spécifié' }}</td>
+
 
         <td>{{ emploi.titre || 'Non spécifié' }}</td>
         <td>{{ emploi.nomEnseignant || 'Non spécifié' }}</td>

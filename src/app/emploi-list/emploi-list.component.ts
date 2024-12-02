@@ -23,7 +23,7 @@ export class EmploiListComponent implements OnInit {
     salle: ''
   };
 
-  // Données des emplois
+  // Donneees des emplois
   emplois: Emploi[] = [];
   classes: Classe[] = [];
   emploisGroupedByClasse: { classe: string, emplois: Emploi[] }[] = [];
@@ -65,10 +65,11 @@ export class EmploiListComponent implements OnInit {
   
         // Assigner la classe aux emplois
         this.emplois.forEach(emploi => {
-          if (emploi.classe && typeof emploi.classe === 'number') {
+          if (typeof emploi.classe === 'number') {
+            // Rechercher la classe correspondante si emploi.classe est un identifiant
             const foundClasse = this.classes.find(classe => classe.id === emploi.classe);
-            emploi.classe = foundClasse || null;  // Assigner null si la classe n'est pas trouvee
-          }
+            emploi.classe = foundClasse || null; 
+          } 
         });
       },
       (error) => {
@@ -77,23 +78,25 @@ export class EmploiListComponent implements OnInit {
     );
   }
   
-
   loadEmplois(): void {
     this.emploiService.getEmplois(this.filters).subscribe({
       next: (data) => {
         if (data && typeof data === 'object') {
           this.emplois = Object.values(data).flat();
-          
-          // Pré-traiter les emplois pour garantir que classe est un objet
+  
+          // Pré-traiter les emplois pour garantir que classe est un objet ou null
           this.emplois.forEach(emploi => {
-            if (emploi.classe && typeof emploi.classe === 'number') {
+            if (typeof emploi.classe === 'number') {
               const foundClasse = this.classes.find(classe => classe.id === emploi.classe);
               emploi.classe = foundClasse || null;
+            } else if (emploi.classe && typeof emploi.classe === 'object') {
+              console.log(`Classe déjà associée: ${emploi.classe.nom}`);
             }
           });
-          
-          this.groupEmploisByJour();  
-           this.checkUpcomingCourses();} else {
+  
+          this.groupEmploisByJour();
+          this.checkUpcomingCourses();
+        } else {
           console.error("La réponse de l'API n'est pas un objet attendu", data);
         }
       },
@@ -102,6 +105,7 @@ export class EmploiListComponent implements OnInit {
       }
     });
   }
+  
 checkUpcomingCourses(): void {
   const now = new Date();
 
@@ -113,7 +117,7 @@ checkUpcomingCourses(): void {
   this.emplois.forEach(emploi => {
     let startTime: Date;
 
-    // Vérifier si startTime est un timestamp numérique ou une chaîne
+    // Verifier si startTime est un timestamp numerique ou une chaîne
     if (typeof emploi.startTime === 'string' || typeof emploi.startTime === 'number') {
       startTime = new Date(emploi.startTime);
     } else {
@@ -121,7 +125,7 @@ checkUpcomingCourses(): void {
       return;
     }
 
-    // Vérifier si startTime est une date valide
+    // Verifier si startTime est une date valide
     if (isNaN(startTime.getTime())) {
       console.warn(`startTime invalide pour l'emploi: ${emploi.titre}`);
       return; // Ignorer cet emploi si startTime est invalide
@@ -130,7 +134,7 @@ checkUpcomingCourses(): void {
     const timeDiff = (now.getTime()-startTime.getTime()) ;
     const minutesDiff = Math.floor(timeDiff / (1000 * 60*3600*60));
     this.toastr.info(`Le cours ${emploi.titre} commence dans ${minutesDiff} minutes`);
-    // Vérifier si le cours commence dans moins de 5 minutes
+    // Verifier si le cours commence dans moins de 5 minutes
     if (timeDiff > 0 && timeDiff <= 5 * 60 * 10000) {
       this.toastr.info(`Le cours ${emploi.titre} commence dans ${minutesDiff} ms`);
     } else if (timeDiff < 0) {

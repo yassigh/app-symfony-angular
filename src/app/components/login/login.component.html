@@ -4,7 +4,7 @@
 <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
   <div class="form-group">
     <label for="email">Email</label>
-    <i class="fas fa-envelope"></i> <!-- Icône d'enveloppe -->
+    <i class="fas fa-envelope"></i> 
     <input type="email" id="email" formControlName="email" class="form-control" />
     <div *ngIf="loginForm.get('email')?.invalid && loginForm.get('email')?.touched">
       <small class="text-danger">Un email valide est requis.</small>
@@ -40,6 +40,8 @@
      data-ux_mode="popup"
      data-login_uri="http://localhost:4200/#/emploi"
      data-auto_select="true"
-     data-itp_support="true">
+     data-itp_support="true"
+     data-callback="onGoogleSignIn">
 </div>
+
 

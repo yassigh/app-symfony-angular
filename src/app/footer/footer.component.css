@@ -1,0 +1,48 @@
+/* Footer Styling */
+footer {
+    background-color: #343a40; /* Fond sombre */
+    color: #f8f9fa; /* Texte clair */
+    padding: 30px 0; /* Padding supérieur et inférieur */
+    margin-top: 50px; /* Espacement au-dessus du footer */
+  }
+  
+  footer .container {
+    max-width: 960px; /* Largeur maximale du footer */
+    margin: 0 auto; /* Centrer le contenu */
+  }
+  
+  footer p {
+    margin-bottom: 10px; /* Espacement entre les paragraphes */
+    font-size: 14px; /* Taille de police réduite */
+  }
+  
+  footer p strong {
+    font-weight: bold; /* Gras pour le nom */
+  }
+  
+  footer a {
+    text-decoration: none; /* Retirer la sous-ligne des liens */
+    color: #f8f9fa; /* Couleur claire des liens */
+    transition: all 0.3s ease; /* Transition fluide pour l'effet de survol */
+  }
+  
+  footer a:hover {
+    color: #007bff; /* Changer la couleur en bleu lors du survol */
+    transform: scale(1.1); /* Agrandir l'icône lors du survol */
+  }
+  
+  /* Icônes */
+  footer i {
+    font-size: 1.5rem; /* Taille des icônes */
+  }
+  
+  /* Ajout d'un léger ombrage sur le texte du footer */
+  footer p, footer a {
+    text-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+  }
+  
+  footer .container a {
+    margin-right: 15px; /* Espacement entre les icônes */
+    margin-left: 15px; /* Espacement entre les icônes */
+  }
+  

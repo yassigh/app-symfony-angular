@@ -12,7 +12,7 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
 
-
+  { path: 'emploi-simple', component: EmploiSimpleComponent },
   { path: 'emploi', component: EmploiListComponent },
   { path: 'emploi-new', component: EmploiFormComponent }, 
   { path: 'emploi-edit/:id', component: EmploiFormComponent }, 

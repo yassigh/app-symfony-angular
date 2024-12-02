@@ -14,7 +14,11 @@ export class AuthService {
   register(user: { email: string; nom: string; prenom: string; plainPassword: string }): Observable<any> {
     return this.http.post<any>(`${this.apiUrl}/register`, user);
   }
-
+  googleLogin(idToken: string): Observable<any> {
+    return this.http.post(`${this.apiUrl}/google-login`, { idToken });
+  }
+  
+  
   login(credentials: { email: string; plainPassword: string }): Observable<any> {
     return this.http.post(`${this.apiUrl}/login`, credentials);
   }

@@ -12,9 +12,8 @@ export class EmploiFormComponent implements OnInit {
   emploiForm: FormGroup;
   isEditMode: boolean = false;
   emploiId: number | undefined;
-  isEditing: boolean = false; // Propriété pour vérifier si nous sommes en mode édition
- id: number | undefined; // ID de l'emploi, qui peut être undefined si un nouvel emploi est créé
-  
+  isEditing: boolean = false; 
+   id: number | undefined;
   constructor(
     private fb: FormBuilder,
     private emploiService: EmploiService,
@@ -49,7 +48,7 @@ export class EmploiFormComponent implements OnInit {
   }
 
   loadEmploi(id: number): void {
-    // Charge les données de l'emploi dans le formulaire
+
     this.emploiService.getEmploiById(id).subscribe(data => {
       if (data) {
         this.emploiForm.patchValue(data);
@@ -59,21 +58,19 @@ export class EmploiFormComponent implements OnInit {
   onSubmit(): void {
     if (this.emploiForm.valid) {
       if (this.isEditMode && this.emploiId) {
-        // Si on est en mode edition, mettre a jour l'emploi
-        this.emploiService.updateEmploi(this.emploiId, this.emploiForm.value).subscribe({
+          this.emploiService.updateEmploi(this.emploiId, this.emploiForm.value).subscribe({
           next: () => {
-            this.router.navigate(['/emploi']); // Redirection vers la page d'affichage des emplois
-          },
+            this.router.navigate(['/emploi']); 
+           },
           error: (err) => {
             console.error('Erreur lors de la modification:', err);
           }
         });
       } else {
-        // Sinon, créer un nouvel emploi
+     
         this.emploiService.createEmploi(this.emploiForm.value).subscribe({
           next: () => {
-            this.router.navigate(['/emploi']); // Redirection vers la page d'affichage des emplois
-          },
+            this.router.navigate(['/emploi']);  },
           error: (err) => {
             console.error('Erreur lors de la création:', err);
           }
