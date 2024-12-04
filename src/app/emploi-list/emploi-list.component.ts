@@ -125,13 +125,13 @@ checkUpcomingCourses(): void {
       return;
     }
 
-    // Verifier si startTime est une date valide
+ 
     if (isNaN(startTime.getTime())) {
       console.warn(`startTime invalide pour l'emploi: ${emploi.titre}`);
-      return; // Ignorer cet emploi si startTime est invalide
+      return; 
     }
 
-    const timeDiff = (now.getTime()-startTime.getTime()) ;
+    const timeDiff = (startTime.getTime()-now.getTime()) ;
     const minutesDiff = Math.floor(timeDiff / (1000 * 60*3600*60));
     this.toastr.info(`Le cours ${emploi.titre} commence dans ${minutesDiff} minutes`);
     // Verifier si le cours commence dans moins de 5 minutes

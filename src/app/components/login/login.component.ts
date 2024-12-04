@@ -45,6 +45,14 @@ export class LoginComponent {
     }
   }
 
+
+
+
+
+
+
+
+  
   handleGoogleSignIn(googleUser: any) {
     const idToken = googleUser.credential;
     this.authService.googleLogin(idToken).subscribe({
