@@ -70,7 +70,7 @@ class UserController extends AbstractController
             return new JsonResponse(['error' => 'Missing idToken.'], JsonResponse::HTTP_BAD_REQUEST);
         }
     
-        // Remplacez par votre logique pour valider l'idToken avec l'API Google
+        // rremplacez par votre logique pour valider l'idToken avec l'api Google
         $client = new \Google_Client(['client_id' => '409367083188-dp5dm2r4onghld6tfi2m6sgd9cbctgio.apps.googleusercontent.com']);
         $payload = $client->verifyIdToken($data['idToken']);
         if (!$payload) {
@@ -81,23 +81,22 @@ class UserController extends AbstractController
         $nom = $payload['family_name'] ?? '';
         $prenom = $payload['given_name'] ?? '';
     
-        // Vérifiez si l'utilisateur existe déjà dans la base de données
+        // veerifiez si l utilisateur existe deja dans la base de donnees
         $user = $entityManager->getRepository(User::class)->findOneBy(['email' => $email]);
         if (!$user) {
-            // Si l'utilisateur n'existe pas, créez un nouvel utilisateur
+           
             $user = new User();
             $user->setEmail($email);
             $user->setNom($nom);
             $user->setPrenom($prenom);
             $user->setRoles(['ROLE_USER']);
-            // Vous pouvez générer un mot de passe aléatoire ou laisser le champ vide
             $user->setPassword('');
     
             $entityManager->persist($user);
             $entityManager->flush();
         }
     
-        // Retournez une réponse JSON avec le rôle de l'utilisateur
+     
         return new JsonResponse([
             'message' => 'Google login successful',
             'role' => $user->getRoles()[0],

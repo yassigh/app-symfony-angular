@@ -113,7 +113,7 @@ class EmploiController extends AbstractController
             return new JsonResponse(['error' => 'Données manquantes'], Response::HTTP_BAD_REQUEST);
         }
     
-        // Parse date and time correctly
+     
         try {
             $startTime = new \DateTime($data['startTime']); // Convert string to DateTime
             $endTime = new \DateTime($data['endTime']);
@@ -121,7 +121,7 @@ class EmploiController extends AbstractController
             return new JsonResponse(['error' => 'Format de date invalide'], Response::HTTP_BAD_REQUEST);
         }
     
-        // Creer un nouvel emploi
+       
         $emploi = new Emploi();
     
         // Initialiser les champs
@@ -146,7 +146,7 @@ class EmploiController extends AbstractController
             }
         }
     
-        // Sauvegarder l'emploi dans la base de donnees
+       
         $entityManager->persist($emploi);
         $entityManager->flush();
     
@@ -159,7 +159,7 @@ class EmploiController extends AbstractController
     {
         $data = json_decode($request->getContent(), true);
     
-        // Vérifiez si les champs requis sont presents dans les donnees
+     
         if (isset($data['jour'])) {
             $emploi->setJour($data['jour']);
         }
@@ -191,7 +191,6 @@ class EmploiController extends AbstractController
     {
         $classes = $classeRepository->getAllClasses();
         if (empty($classes)) {
-            // Log pour déboguer
             $this->get('logger')->error('Aucune classe trouvee.');
         }
         return $this->json($classes);
